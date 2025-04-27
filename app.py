@@ -2,10 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from tensorflow.keras.models import load_model
 import numpy as np
-import os  # ← أضفناها هنا عشان نقرأ متغيرات البيئة
+import os  # ← عشان نقرأ متغيرات البيئة
 
 app = Flask(__name__)
-CORS(app)  # ← عشان نحل مشكلة CORS
+CORS(app, resources={r"/*": {"origins": "*"}})  # ← التعديل هنا ✅
 
 # Load the trained model WITHOUT compiling (to avoid errors with custom losses)
 model = load_model('final_model.h5', compile=False)
